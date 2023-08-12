@@ -11,7 +11,7 @@ body {
 .game-container {
   width: 300px;
   height: 300px;
-  border: 2px solid #2bc230;
+  border: 2px solid #f0f0f0;
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(20, 1fr);
@@ -23,7 +23,7 @@ body {
 }
 
 .food {
-  background-color: red;
+  background-color: yellow;
 }
 
 #startButton, .controls button {
