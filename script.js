@@ -62,6 +62,10 @@ function checkFoodCollision() {
     foodCollectedCount++;
 
     if (foodCollectedCount % 10 === 0) {
+      placeFoodOutside = true;
+    }
+
+    if (placeFoodOutside) {
       const side = Math.floor(Math.random() * 4);
       switch (side) {
         case 0: // left
@@ -84,6 +88,7 @@ function checkFoodCollision() {
         y: Math.floor(Math.random() * 20),
       };
     }
+
     snake.push({ ...snake[snake.length - 1] });
   }
 }
