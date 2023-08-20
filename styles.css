@@ -40,11 +40,9 @@ body {
     display: flex;
     flex-direction: column; 
     justify-content: center;
-    align-items: center; 
-    top: 0;
-    left: 0;
-    width: 100%;
+    align-items: center;
 }
+
 
 .instruction-panel {
   margin-left: 0px;
