@@ -31,12 +31,28 @@ function main() {
 }
 
 function updateSnakePosition() {
-  const head = { ...snake[0] };
-  head.x += direction.x;
-  head.y += direction.y;
-  snake.unshift(head);
+  const newHead = { ...snake[0] };
+  newHead.x += direction.x;
+  newHead.y += direction.y;
+
+  // Primeiro, verifique se a nova posição resulta em Game Over
+  if (
+    newHead.x < 0 ||
+    newHead.x >= 20 ||
+    newHead.y < 0 ||
+    newHead.y >= 20 ||
+    snake.slice(1).some(segment => newHead.x === segment.x && newHead.y === segment.y)
+  ) {
+    document.getElementById("gameOver").style.display = "block";
+    clearInterval(gameInterval);
+    return; // Return aqui previne que a cobra continue movendo depois de morrer
+  }
+
+  // Se estiver tudo bem, atualize a posição
+  snake.unshift(newHead);
   snake.pop();
 }
+
 
 function checkGameOver() {
   if (
