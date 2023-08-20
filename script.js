@@ -39,21 +39,18 @@ function updateSnakePosition() {
 }
 
 function checkGameOver() {
-  for (let segment of snake) {
-    if (
-      segment.x < 0 ||
-      segment.x >= 20 ||
-      segment.y < 0 ||
-      segment.y >= 20 ||
-      (snake[0].x === segment.x &&
-        snake[0].y === segment.y &&
-        snake[0] !== segment)
-    ) {
-      document.getElementById("gameOver").style.display = "block";
-      clearInterval(gameInterval);
-    }
+  if (
+    snake[0].x < 0 ||
+    snake[0].x >= 20 ||
+    snake[0].y < 0 ||
+    snake[0].y >= 20 ||
+    snake.slice(1).some(segment => snake[0].x === segment.x && snake[0].y === segment.y)
+  ) {
+    document.getElementById("gameOver").style.display = "block";
+    clearInterval(gameInterval);
   }
 }
+
 
 function checkFoodCollision() {
   if (snake[0].x === food.x && snake[0].y === food.y) {
