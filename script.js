@@ -62,23 +62,19 @@ function checkFoodCollision() {
     foodCollectedCount++;
 
     if (foodCollectedCount % 10 === 0) {
-      placeFoodOutside = true;
-    }
-
-    if (placeFoodOutside) {
       const side = Math.floor(Math.random() * 4);
       switch (side) {
         case 0: // left
-          food = { x: -1, y: Math.floor(Math.random() * 20) };
+          food = { x: -2, y: Math.floor(Math.random() * 20) };
           break;
         case 1: // right
-          food = { x: 20, y: Math.floor(Math.random() * 20) };
+          food = { x: 21, y: Math.floor(Math.random() * 20) };
           break;
         case 2: // top
-          food = { x: Math.floor(Math.random() * 20), y: -1 };
+          food = { x: Math.floor(Math.random() * 20), y: -2 };
           break;
         case 3: // bottom
-          food = { x: Math.floor(Math.random() * 20), y: 20 };
+          food = { x: Math.floor(Math.random() * 20), y: 21 };
           break;
       }
       placeFoodOutside = false;
@@ -88,7 +84,6 @@ function checkFoodCollision() {
         y: Math.floor(Math.random() * 20),
       };
     }
-    
     snake.push({ ...snake[snake.length - 1] });
   }
 }
@@ -103,7 +98,7 @@ function drawGame() {
     gameContainer.appendChild(div);
   }
 
-  if ((food.x >= -1 && food.x <= 20) && (food.y >= -1 && food.y <= 20)) {
+  if ((food.x >= -2 && food.x <= 21) && (food.y >= -2 && food.y <= 21)) {
     const foodDiv = document.createElement("div");
     foodDiv.style.gridRowStart = food.y + 1;
     foodDiv.style.gridColumnStart = food.x + 1;
