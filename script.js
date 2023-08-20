@@ -4,6 +4,7 @@ let direction = { x: 1, y: 0 };
 let food = { x: 5, y: 5 };
 let gameInterval;
 let foodCollectedCount = 0;
+let placeFoodOutside = false;
 
 document.getElementById("startButton").addEventListener("click", startGame);
 document.getElementById("restartButton").addEventListener("click", restartGame);
@@ -19,6 +20,7 @@ function restartGame() {
   direction = { x: 1, y: 0 };
   food = { x: 5, y: 5 };
   foodCollectedCount = 0;
+  placeFoodOutside = false;
   document.getElementById("gameOver").style.display = "none";
   startGame();
 }
@@ -60,6 +62,10 @@ function checkFoodCollision() {
     foodCollectedCount++;
 
     if (foodCollectedCount % 10 === 0) {
+      placeFoodOutside = true;
+    }
+
+    if (placeFoodOutside) {
       const side = Math.floor(Math.random() * 4);
       switch (side) {
         case 0: // left
@@ -75,12 +81,14 @@ function checkFoodCollision() {
           food = { x: Math.floor(Math.random() * 20), y: 20 };
           break;
       }
+      placeFoodOutside = false;
     } else {
       food = {
         x: Math.floor(Math.random() * 20),
         y: Math.floor(Math.random() * 20),
       };
     }
+    
     snake.push({ ...snake[snake.length - 1] });
   }
 }
@@ -95,7 +103,7 @@ function drawGame() {
     gameContainer.appendChild(div);
   }
 
-  if (food.x >= 0 && food.x < 20 && food.y >= 0 && food.y < 20) {
+  if ((food.x >= -1 && food.x <= 20) && (food.y >= -1 && food.y <= 20)) {
     const foodDiv = document.createElement("div");
     foodDiv.style.gridRowStart = food.y + 1;
     foodDiv.style.gridColumnStart = food.x + 1;
