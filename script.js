@@ -35,7 +35,6 @@ function updateSnakePosition() {
   newHead.x += direction.x;
   newHead.y += direction.y;
 
-  // Primeiro, verifique se a nova posição resulta em Game Over
   if (
     newHead.x < 0 ||
     newHead.x >= 20 ||
@@ -45,14 +44,12 @@ function updateSnakePosition() {
   ) {
     document.getElementById("gameOver").style.display = "block";
     clearInterval(gameInterval);
-    return; // Return aqui previne que a cobra continue movendo depois de morrer
+    return;
   }
 
-  // Se estiver tudo bem, atualize a posição
   snake.unshift(newHead);
   snake.pop();
 }
-
 
 function checkGameOver() {
   if (
@@ -67,11 +64,10 @@ function checkGameOver() {
   }
 }
 
-
 function checkFoodCollision() {
   if (snake[0].x === food.x && snake[0].y === food.y) {
     foodCollectedCount++;
-    if (foodCollectedCount % 10 === 0) {
+    if (foodCollectedCount % 6 === 0) {
       food = placeFoodOutsideGrid();
     } else {
       food = placeFoodInsideGrid();
@@ -91,13 +87,13 @@ function placeFoodOutsideGrid() {
   const side = Math.floor(Math.random() * 4);
   switch (side) {
     case 0: // left
-      return { x: -1, y: Math.floor(Math.random() * 20) };
+      return { x: -3, y: Math.floor(Math.random() * 20) };
     case 1: // right
-      return { x: 20, y: Math.floor(Math.random() * 20) };
+      return { x: 23, y: Math.floor(Math.random() * 20) };
     case 2: // top
-      return { x: Math.floor(Math.random() * 20), y: -1 };
+      return { x: Math.floor(Math.random() * 20), y: -3 };
     case 3: // bottom
-      return { x: Math.floor(Math.random() * 20), y: 20 };
+      return { x: Math.floor(Math.random() * 20), y: 23 };
     default:
       return placeFoodInsideGrid();
   }
@@ -136,4 +132,5 @@ document.addEventListener("keydown", (e) => {
       break;
   }
 });
+
 
