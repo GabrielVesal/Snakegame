@@ -8,8 +8,8 @@ body {
 }
 
 .game-container {
-  width: 300px;
-  height: 300px;
+  width: 320px;  /* Ajustado para ter borda */
+  height: 320px; /* Ajustado para ter borda */
   display: grid;
   grid-template-columns: repeat(20, 15px);
   grid-template-rows: repeat(20, 15px);
@@ -47,7 +47,7 @@ body {
 
 .instruction-panel {
   margin-left: 0px;
-  width: 300px;
+  width: 320px;  /* Ajustado para alinhar com a borda do grid */
   padding: 20px;
   border: 2px solid white;
   color: white;
@@ -68,5 +68,3 @@ body {
   color: red;
   font-weight: bold;
 }
-
-
