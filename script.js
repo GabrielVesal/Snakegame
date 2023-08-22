@@ -35,17 +35,20 @@ function updateSnakePosition() {
     newHead.x += direction.x;
     newHead.y += direction.y;
 
-    if (
-        newHead.x < 0 ||
-        newHead.x > 19 ||  // Corrigido para ficar dentro do grid 20x20
-        newHead.y < 0 ||
-        newHead.y > 19 ||  // Corrigido para ficar dentro do grid 20x20
-        snake.slice(1).some(segment => newHead.x === segment.x && newHead.y === segment.y)
-    ) {
-        document.getElementById("gameOver").style.display = "block";
-        clearInterval(gameInterval);
-        return false; 
-    }
+   if (
+    newHead.x < 0 ||
+    newHead.x > 19 ||
+    newHead.y < 0 ||
+    newHead.y > 19 ||
+    snake.slice(1).some(segment => newHead.x === segment.x && newHead.y === segment.y)
+) {
+    const randomMessage = gameOverMessages[Math.floor(Math.random() * gameOverMessages.length)];
+    document.getElementById("gameOverMessage").textContent = randomMessage;
+    
+    document.getElementById("gameOver").style.display = "block";
+    clearInterval(gameInterval);
+    return false; 
+}
 
     snake.unshift(newHead);
     snake.pop();
@@ -118,5 +121,3 @@ const gameOverMessages = [
   "A cobra diz: 'Na próxima vez, me deixe controlar o teclado!'"
 ];
 
-const randomMessage = gameOverMessages[Math.floor(Math.random() * gameOverMessages.length)];
-document.querySelector("#gameOver p:nth-child(2)").textContent = randomMessage;
