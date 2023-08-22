@@ -25,7 +25,7 @@ function restartGame() {
 
 function main() {
   updateSnakePosition();
-  checkGameOver();
+  if (checkGameOver()) return; // Se gameOver, encerra o ciclo.
   checkFoodCollision();
   drawGame();
 }
@@ -34,7 +34,6 @@ function updateSnakePosition() {
   const newHead = { ...snake[0] };
   newHead.x += direction.x;
   newHead.y += direction.y;
-
   snake.unshift(newHead);
   snake.pop();
 }
@@ -49,13 +48,15 @@ function checkGameOver() {
   ) {
     document.getElementById("gameOver").style.display = "block";
     clearInterval(gameInterval);
+    return true;
   }
+  return false;
 }
 
 function checkFoodCollision() {
   if (snake[0].x === food.x && snake[0].y === food.y) {
     foodCollectedCount++;
-    if (foodCollectedCount === 5) {
+    if (foodCollectedCount % 5 === 0) {
       food = placeFoodOutsideGrid();
     } else {
       food = placeFoodInsideGrid();
