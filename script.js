@@ -107,3 +107,13 @@ document.addEventListener("keydown", (e) => {
       break;
   }
 });
+const gameOverMessages = [
+  "Até as cobras têm dias ruins. Vamos tentar novamente?",
+  "Quem diria que dirigir uma cobra seria tão difícil?",
+  "Não desista! Até as maiores cobras começam pequenas.",
+  "Essa cobra tem um apetite por autodestruição. Vamos tentar de novo?",
+  "Não era essa a direção? A cobra também ficou confusa!",
+  "Parece que a cobra não gostou do seu estilo de direção!",
+  "Ops! A cobra pediu para tentar novamente. Ela acredita em você!",
+  "A cobra diz: 'Na próxima vez, me deixe controlar o teclado!'"
+];
