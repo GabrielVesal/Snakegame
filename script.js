@@ -52,37 +52,13 @@ function updateSnakePosition() {
     return true; // A cobra não colidiu.
 }
 
-function main() {
-  if (updateSnakePosition()) {
-    drawGame();
-    checkGameOver();
-    checkFoodCollision();
-  }
-}
-
-
-
-function checkGameOver() {
-    if (
-        snake[0].x < 0 ||
-        snake[0].x > 19 ||  // Deve ser 19, não 20
-        snake[0].y < 0 ||
-        snake[0].y > 19 ||  // Deve ser 19, não 20
-        snake.slice(1).some(segment => snake[0].x === segment.x && snake[0].y === segment.y)
-    ) {
-        document.getElementById("gameOver").style.display = "block";
-        clearInterval(gameInterval);
-    }
-}
-
-
 function checkFoodCollision() {
   if (snake[0].x === food.x && snake[0].y === food.y) {
     foodCollectedCount++;
-    if (foodCollectedCount % 5 === 0) {
-      food = placeFoodOutsideGrid();
+    if (foodCollectedCount % 8 === 0) {  // 1 a cada 8 comidas
+        food = placeFoodOutsideGrid();
     } else {
-      food = placeFoodInsideGrid();
+        food = placeFoodInsideGrid();
     }
     snake.push({ ...snake[snake.length - 1] });
   }
@@ -99,15 +75,15 @@ function placeFoodOutsideGrid() {
   const side = Math.floor(Math.random() * 4);
   switch (side) {
     case 0:
-      return { x: -3, y: Math.floor(Math.random() * 20) };
+        return { x: -1, y: Math.floor(Math.random() * 24) };
     case 1:
-      return { x: 23, y: Math.floor(Math.random() * 20) };
+        return { x: 24, y: Math.floor(Math.random() * 24) };
     case 2:
-      return { x: Math.floor(Math.random() * 20), y: -3 };
+        return { x: Math.floor(Math.random() * 24), y: -1 };
     case 3:
-      return { x: Math.floor(Math.random() * 20), y: 23 };
+        return { x: Math.floor(Math.random() * 24), y: 24 };
     default:
-      return placeFoodInsideGrid();
+        return placeFoodInsideGrid();
   }
 }
 
