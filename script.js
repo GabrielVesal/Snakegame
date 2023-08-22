@@ -24,10 +24,10 @@ function restartGame() {
 }
 
 function main() {
-  updateSnakePosition();
-  checkGameOver();
-  checkFoodCollision();
-  drawGame();
+  if (updateSnakePosition()) {
+    drawGame();
+    checkFoodCollision();
+  }
 }
 
 function updateSnakePosition() {
