@@ -35,18 +35,6 @@ function updateSnakePosition() {
   newHead.x += direction.x;
   newHead.y += direction.y;
 
-  if (
-    newHead.x < 0 ||
-    newHead.x >= 20 ||
-    newHead.y < 0 ||
-    newHead.y >= 20 ||
-    snake.slice(1).some(segment => newHead.x === segment.x && newHead.y === segment.y)
-  ) {
-    document.getElementById("gameOver").style.display = "block";
-    clearInterval(gameInterval);
-    return;
-  }
-
   snake.unshift(newHead);
   snake.pop();
 }
@@ -67,7 +55,7 @@ function checkGameOver() {
 function checkFoodCollision() {
   if (snake[0].x === food.x && snake[0].y === food.y) {
     foodCollectedCount++;
-    if (foodCollectedCount % 6 === 0) {
+    if (foodCollectedCount === 5) {
       food = placeFoodOutsideGrid();
     } else {
       food = placeFoodInsideGrid();
@@ -132,5 +120,4 @@ document.addEventListener("keydown", (e) => {
       break;
   }
 });
-
 
