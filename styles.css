@@ -45,26 +45,3 @@ body {
     text-align: center;
 }
 
-.instruction-panel {
-  margin-left: 0px;
-  width: 320px;  /* Ajustado para alinhar com a borda do grid */
-  padding: 20px;
-  border: 2px solid white;
-  color: white;
-}
-
-.instruction-panel h2 {
-  margin-top: 0;
-  border-bottom: 1px solid white;
-  padding-bottom: 10px;
-}
-
-.instruction-panel ul {
-  list-style-type: disc;
-  padding-left: 20px;
-}
-
-.instruction-panel p {
-  color: red;
-  font-weight: bold;
-}
