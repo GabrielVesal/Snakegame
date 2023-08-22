@@ -36,20 +36,30 @@ function updateSnakePosition() {
     newHead.y += direction.y;
 
     if (
-        newHead.x <= -1 ||
+        newHead.x < 0 ||
         newHead.x >= 20 ||
-        newHead.y <= -1 ||
+        newHead.y < 0 ||
         newHead.y >= 20 ||
         snake.slice(1).some(segment => newHead.x === segment.x && newHead.y === segment.y)
     ) {
         document.getElementById("gameOver").style.display = "block";
         clearInterval(gameInterval);
-        return; 
+        return false; // A cobra colidiu.
     }
 
     snake.unshift(newHead);
     snake.pop();
+    return true; // A cobra não colidiu.
 }
+
+function main() {
+  if (updateSnakePosition()) {
+    drawGame();
+    checkGameOver();
+    checkFoodCollision();
+  }
+}
+
 
 
 function checkGameOver() {
