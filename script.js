@@ -117,3 +117,6 @@ const gameOverMessages = [
   "Ops! A cobra pediu para tentar novamente. Ela acredita em você!",
   "A cobra diz: 'Na próxima vez, me deixe controlar o teclado!'"
 ];
+
+const randomMessage = gameOverMessages[Math.floor(Math.random() * gameOverMessages.length)];
+document.querySelector("#gameOver p:nth-child(2)").textContent = randomMessage;
