@@ -54,9 +54,9 @@ function updateSnakePosition() {
 function checkGameOver() {
     if (
         snake[0].x < 0 || // Bordas da esquerda
-        snake[0].x > 19 || // Bordas da direita
+        snake[0].x < 0 || // Bordas da direita
         snake[0].y < 0 || // Bordas de cima
-        snake[0].y > 19 || // Bordas de baixo
+        snake[0].y < 0 || // Bordas de baixo
         snake.slice(1).some(segment => snake[0].x === segment.x && snake[0].y === segment.y) // Colisão com o corpo da cobra
     ) {
         document.getElementById("gameOver").style.display = "block";
