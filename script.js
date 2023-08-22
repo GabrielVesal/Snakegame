@@ -64,17 +64,16 @@ function main() {
 
 function checkGameOver() {
     if (
-        snake[0].x <= -1 ||
-        snake[0].x >= 20 ||
-        snake[0].y <= -1 ||
-        snake[0].y >= 20 ||
+        snake[0].x < 0 ||
+        snake[0].x > 19 ||  // Deve ser 19, não 20
+        snake[0].y < 0 ||
+        snake[0].y > 19 ||  // Deve ser 19, não 20
         snake.slice(1).some(segment => snake[0].x === segment.x && snake[0].y === segment.y)
     ) {
         document.getElementById("gameOver").style.display = "block";
         clearInterval(gameInterval);
     }
 }
-
 
 
 function checkFoodCollision() {
