@@ -36,18 +36,17 @@ function updateSnakePosition() {
     newHead.y += direction.y;
 
     if (
-        newHead.x < 0 || // Bordas da esquerda
-        newHead.x > 19 || // Bordas da direita
-        newHead.y < 0 || // Bordas de cima
-        newHead.y > 19 || // Bordas de baixo
-        snake.slice(1).some(segment => newHead.x === segment.x && newHead.y === segment.y) // Colisão com o corpo da cobra
+        newHead.x <= -1 ||
+        newHead.x >= 20 ||
+        newHead.y <= -1 ||
+        newHead.y >= 20 ||
+        snake.slice(1).some(segment => newHead.x === segment.x && newHead.y === segment.y)
     ) {
         document.getElementById("gameOver").style.display = "block";
         clearInterval(gameInterval);
-        return; // Return aqui previne que a cobra continue movendo depois de morrer
+        return; 
     }
 
-    // Se estiver tudo bem, atualize a posição
     snake.unshift(newHead);
     snake.pop();
 }
@@ -55,11 +54,11 @@ function updateSnakePosition() {
 
 function checkGameOver() {
     if (
-        snake[0].x < 0 || // Bordas da esquerda
-        snake[0].x > 19 || // Bordas da direita
-        snake[0].y < 0 || // Bordas de cima
-        snake[0].y > 19 || // Bordas de baixo
-        snake.slice(1).some(segment => snake[0].x === segment.x && snake[0].y === segment.y) // Colisão com o corpo da cobra
+        snake[0].x <= -1 ||
+        snake[0].x >= 20 ||
+        snake[0].y <= -1 ||
+        snake[0].y >= 20 ||
+        snake.slice(1).some(segment => snake[0].x === segment.x && snake[0].y === segment.y)
     ) {
         document.getElementById("gameOver").style.display = "block";
         clearInterval(gameInterval);
