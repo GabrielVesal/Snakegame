@@ -8,8 +8,8 @@ body {
 }
 
 .game-container {
-  width: 320px;  /* Ajustado para ter borda */
-  height: 320px; /* Ajustado para ter borda */
+  width: 320px; 
+  height: 320px; 
   display: grid;
   grid-template-columns: repeat(20, 15px);
   grid-template-rows: repeat(20, 15px);
